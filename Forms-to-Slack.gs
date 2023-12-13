@@ -13,6 +13,9 @@ function onFormSubmit(event) {
 
   // Initialize an empty object to store the form data.
   var formData = {};
+  
+  // Get the respondent's email address
+  var respondentEmail = formResponse.getRespondentEmail();
 
   // Loop through each item response and add it to the formData object.
   for (var i = 0; i < itemResponses.length; i++) {
@@ -50,7 +53,7 @@ function onFormSubmit(event) {
   // Set up the Slack message payload.
   var slackWebhookUrl = 'https://hooks.slack.com/services/xxxxxxxxx/yyyyyyyyy/zzzzzzzzzzzzzzzzzzzzzzzz'; // Replace with your own Slack webhook URL.
   var payload = {
-    'text': 'New Forms response', // Set the message text.
+    'text': 'New Form Submission', // Set the message text.
     'attachments': [ // Set the message attachments.
       {
         'fallback': 'Forms response', // Set the fallback message for devices that can't display attachments.
@@ -59,6 +62,14 @@ function onFormSubmit(event) {
       }
     ]
   };
+
+  // Add the respondent's email to the message
+  payload.attachments[0].fields.push({
+    'title': 'Email',
+    'value': respondentEmail,
+    'short': false
+  });
+
   
   // Loop through each question in the formData object and add it as a field in the message attachment.
   for (var key in formData) {

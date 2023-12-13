@@ -1,7 +1,7 @@
 # Forms-to-Slack
 
 ### Description:
-Simple script to post Google Forms responses to a Slack channel
+Simple script to post Google Forms responses to a Slack channel. Forked from https://github.com/munhozzlucas/Forms-to-Slack with a change to add the form email field to the slack message.
 
 
 ### How to set it up in Slack:
